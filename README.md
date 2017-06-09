@@ -32,7 +32,7 @@ The necessary steps are
         
 	thisredis: {
             adapter: 'mysails-redis',
-            host: host('myredis'), 0.0.0.0 or name used in dockerfile
+            host: host('myredis'), // 0.0.0.0 or name used in dockerfile
             port: 6379,
             database: 'test'
             url: 'redis://' + host('myredis') + ':6379'
