@@ -39,6 +39,9 @@ The necessary steps are
         },
 
 ```
+Remark : host('myredis') is just a shorthand and should be replaced, depending on the circumstances. There are two cases: 
+a) If docker is not used then typically this should be replaced by 0.0.0.0 or localhost
+b) If docker is used, then typically this the moniker used in the docker-compose.yml 
 
 4) change the connection name in the models files to your requirements.
 
