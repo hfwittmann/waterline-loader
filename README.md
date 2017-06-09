@@ -1,6 +1,6 @@
 This module is inspired by https://github.com/mwielbut/thinky-loader
 
-It does the same for waterline;
+It does the same for waterline, so basically it is just a singleton for waterline;
 
 Once the connection is ready, you can use the following line anywhere in your server app to get access (same principle as for thinky-loader):
 
