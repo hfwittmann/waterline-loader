@@ -1,0 +1,21 @@
+{
+  "name": "waterline-loader",
+  "version": "1.0.12",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "lab _tests/before.js tests _tests/after.js --lint --coverage",
+    "test-report": "lab _tests/before.js tests _tests/after.js --lint --coverage --reporter html > coverage.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "code": "^4.0.0",
+    "lab": "^13.1.0",
+    "lodash": "^4.17.4",
+    "moment": "^2.18.1",
+    "rand-token": "^0.3.0",
+    "sails-memory": "^0.10.7",
+    "waterline": "^0.11.11"
+  }
+}

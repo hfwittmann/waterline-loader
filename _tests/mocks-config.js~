@@ -1,0 +1,106 @@
+'use strict';
+const Randtoken = require('rand-token');
+
+module.exports = {
+
+    generateTempUser: function (myId) {
+
+        return {
+
+            email: 'a' + myId + '@company.com',
+            username: 'b' + myId,
+            password: 'c' + myId,
+
+            sitename : process.env.sitename,
+
+            GENERATED_OWNERSHIP_ID: Randtoken.generate(48)
+
+        };
+    },
+
+    // generateTempUser_NoPassword: function (myId) {
+
+    //     return {
+
+    //         email: 'a' + myId + '@company.com',
+    //         username: 'b' + myId,
+    //         // password: 'c' + myId,
+    //         sitename : process.env.sitename,
+    //         GENERATED_OWNERSHIP_ID: Randtoken.generate(48)
+    //     };
+    // },
+
+    generateTempUser_NoEmail: function (myId) {
+
+        return {
+
+            // email: 'a' + myId + '@company.com',
+            username: 'b' + myId,
+            password: 'c' + myId,
+
+            sitename : process.env.sitename,
+            GENERATED_OWNERSHIP_ID: Randtoken.generate(48)
+        };
+    },
+
+    // generateTempUser_NoUsername: function (myId) {
+
+    //     return {
+
+    //         email: 'a' + myId + '@company.com',
+    //         // username: 'b' + myId,
+    //         password: 'c' + myId,
+    //         sitename : process.env.sitename,
+    //         GENERATED_OWNERSHIP_ID: Randtoken.generate(48)
+    //     };
+    // },
+
+
+    generateUser: function (myId) {
+
+        return {
+
+            email: 'a' + myId + '@company.com',
+            username: 'b' + myId,
+            password: 'c' + myId,
+            sitename : process.env.sitename
+        };
+    },
+
+    generateUser_NoPassword: function (myId) {
+
+        return {
+
+            email: 'a' + myId + '@company.com',
+            username: 'b' + myId,
+            // password: 'c' + myId,
+            sitename : process.env.sitename
+        };
+    }
+
+    // generateUser_NoEmail: function (myId) {
+
+    //     return {
+
+    //         // email: 'a' + myId + '@company.com',
+    //         username: 'b' + myId,
+    //         password: 'c' + myId,
+    //         sitename : process.env.sitename
+    //     };
+    // },
+
+    // generateUser_NoUsername: function (myId) {
+
+    //     return {
+
+    //         email: 'a' + myId + '@company.com',
+    //         // username: 'b' + myId,
+    //         password: 'c' + myId,
+    //         sitename : process.env.sitename,
+    //     };
+    // }
+
+
+
+
+};
