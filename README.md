@@ -4,8 +4,9 @@ It does the same for waterline, so basically it is just a singleton for waterlin
 
 Once the connection is ready, you can use the following line anywhere in your server app to get access (same principle as for thinky-loader):
 
+```javascript
 const Waterline = require('waterline-loader');
-
+```
 This module is tested and comes with 100% test-coverage.
 
 
@@ -22,7 +23,7 @@ The necessary steps are
 2) Choose the database type you want to use. Download the necessary module, e.g. sails-redis if you want to use redis.
 3) Modify the config to reflect this. The example config file has commented out versions of what to use. E.g. for redis a standard config is:
 
-	
+```javascript	
 
 	adapters: {
            'mysails-redis' : require('sails-redis'),
@@ -37,6 +38,8 @@ The necessary steps are
             url: 'redis://' + host('myredis') + ':6379'
         },
 
+```
+
 4) change the connection name in the models files to your requirements.
 
    E.g. if you use the config settings from 3) change the connection names in the models from thismemory to thisredis; ie the TempUserModel.js and UserModel.js will have a changed line
@@ -49,10 +52,11 @@ The necessary steps are
 
 5) Initialise your waterline connection 
 	
+	```javascript
 	const Waterline = require('waterline-loader');
 	const _waterlineConfig = require(Path.resolve(models, 'waterline'));
 	const WaterlineReady = Waterline.initialize(_waterlineConfig);
-
+	```
 	
 	WaterlineReady is a Promise that will resolve, when the database connection is ready.
 
