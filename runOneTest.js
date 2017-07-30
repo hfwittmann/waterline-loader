@@ -18,11 +18,7 @@ Promise.all([LoaderReady]).then((res) => {
     })
     .then(() => {
 
-        // require('./tests/workflow/step_4_1_a_user_create_from_temp');
-        // require('./tests/thinky/prechecks/verify_user_password_hashed');
-
         require('./tests/connect');
-        // require('./tests/thinky/batch/ttl');
     })
     .catch((err) => {
 

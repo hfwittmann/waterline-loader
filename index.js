@@ -2,24 +2,20 @@
 
 // read in models
 const Hoek = require('hoek');
-const Path = require('path');
 const _ = require('lodash');
+const Filehound = require('filehound');
 
 const Waterline = require('waterline');
-
-
 
 const loader = {
     initialize: null,
     teardown: null,
     waterline: null,
     models: {},
-    collections:null,
+    collections: null,
     dbReady: false,
     message: null
 };
-
-
 
 const _waterline_ready_fresh = function (options) {
 
@@ -34,7 +30,6 @@ const _waterline_ready_fresh = function (options) {
 };
 
 const _waterline_ready_already = function () {
-
 
     return new Promise((res, rej) => {
 
@@ -57,47 +52,44 @@ loader.initialize = function (options) {
 
     loader.waterline = new Waterline();
 
-
     const modelPath = options.modelPath;
 
-    const modelFiles = require('./_readInModels').models(modelPath);
+    const files = Filehound.create()
+        .paths(modelPath)
+        .ext('js')
+        .find();
 
-    modelFiles.forEach((modelFile) => {
+    return files.then((modelFiles) => {
 
-        const model = require(Path.join(modelPath, modelFile));
-        const modelExtended = Waterline.Collection.extend(model); // !!!!!!!!!!
-        loader.waterline.loadCollection(modelExtended);
+        modelFiles.forEach((modelFile) => {
 
-        _.set(loader, ['models', model.connection, model.tableName], model);
-    });
+            const model = require(modelFile);
+            const modelExtended = Waterline.Collection.extend(model); // !!!!!!!!!!
+            loader.waterline.loadCollection(modelExtended);
 
-
-    const waterline_ready = _waterline_ready_fresh(options);
-
-
-    loader.collections = loader.waterline.collections;
-    loader.dbReady = true;
-    loader.message = 'Success. Waterline Loader has now beeen initialised.';
-
-    return waterline_ready
-        .then(() => {
-
-
-
-            return loader;
+            _.set(loader, ['models', model.connection, model.tableName], model);
         });
 
+        const waterline_ready = _waterline_ready_fresh(options);
 
+        loader.collections = loader.waterline.collections;
+        loader.dbReady = true;
+        loader.message = 'Success. Waterline Loader has now beeen initialised.';
 
+        return waterline_ready
+            .then(() => {
+
+                return loader;
+            });
+
+    });
 
 };
-
 
 loader.teardown = function () {
 
     loader.waterline.teardown();
     loader.dbReady = false;
 };
-
 
 module.exports = loader;
